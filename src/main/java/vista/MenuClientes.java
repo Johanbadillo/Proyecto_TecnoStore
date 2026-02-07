@@ -1,30 +1,20 @@
 package vista;
 
-import controlador.GestionClientes;
-import controlador.GestionClientesImpl;
 import controlador.Validaciones;
-import java.util.Scanner;
-import modelo.persona;
+import controlador.funcionesClientes;
+
 
 public class MenuClientes {
     
-    GestionClientes gc=new GestionClientesImpl(); 
-    
     private void registro(){
-        persona p=new persona();
-        System.out.println("Ingresa el nombre de la Persona");
-        p.setNombre(new Scanner(System.in).nextLine());
-        System.out.println("Ingresa el numero de identificacion de la Persona");
-        p.setIdentificacion(new Scanner(System.in).nextLine());
-        System.out.println("Ingresa el correo de la Persona");
-        p.setCorreo(new Scanner(System.in).nextLine());
-        System.out.println("Ingresa los telefonos de la Persona");
-        p.setTelefono(new Scanner(System.in).nextLine());
-        gc.agregar_Clientes(p);
-        menu();
+        funcionesClientes fc= new funcionesClientes(); 
+        fc.ftRegistro();
     }
     
-    
+    private void actualizacion(){
+        funcionesClientes fc= new funcionesClientes(); 
+        fc.ftActualizacion();
+    }
     
     
     public void menu() {
@@ -48,7 +38,7 @@ public class MenuClientes {
                 registro();
                 break;
             case 2:
-
+                actualizacion();
                 break;
             case 3:
                 break;

@@ -6,11 +6,15 @@ public class Clientes extends persona {
         super(id, nombre, identificacion, correo, telefono);
     }
 
+    public Clientes() {
+        
+    }
+
     @Override
     public String toString() {
         return """ 
                -----------------------------------------
-               Clientes
+               Cliente
                -----------------------------------------
                Nombre:      %s
                C.C:         %S
