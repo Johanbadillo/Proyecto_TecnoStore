@@ -3,20 +3,33 @@ package vista;
 import controlador.Validaciones;
 import controlador.funcionesClientes;
 
-
 public class MenuClientes {
-    
-    private void registro(){
-        funcionesClientes fc= new funcionesClientes(); 
+
+    private void registro() {
+        funcionesClientes fc = new funcionesClientes();
         fc.ftRegistro();
     }
-    
-    private void actualizacion(){
-        funcionesClientes fc= new funcionesClientes(); 
+
+    private void actualizacion() {
+        funcionesClientes fc = new funcionesClientes();
         fc.ftActualizacion();
     }
-    
-    
+
+    private void eliminacion() {
+        funcionesClientes fc = new funcionesClientes();
+        fc.ftEliminacion();
+    }
+
+    private void buscar() {
+        funcionesClientes fc = new funcionesClientes();
+        fc.ftBuscar();
+    }
+
+    private void listar() {
+        funcionesClientes fc = new funcionesClientes();
+        fc.ftListar();
+    }
+
     public void menu() {
         int op = 0;
         Validaciones v = new Validaciones();
@@ -41,12 +54,13 @@ public class MenuClientes {
                 actualizacion();
                 break;
             case 3:
+                eliminacion();
                 break;
             case 4:
-
+                listar();
                 break;
             case 5:
-
+                buscar();
                 break;
             case 6:
                 System.out.println("Regresando al menu anterior...");
