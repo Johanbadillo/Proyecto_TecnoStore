@@ -33,7 +33,7 @@ public class funcionesClientes {
             System.out.println(cl);
             int op = v.validacion(1, 4, """
                     *********************************
-                    Que es lo que deseas Actualizar.
+                    Que es lo que deseas Actualizar. 
                                                               
                     1.   Nombre de cliente.
                     2.   Numero de Identificacion.
@@ -63,5 +63,6 @@ public class funcionesClientes {
         }else {
             System.out.println("No se ha encontrado el cliente");
         }
+        mc.menu();
     }
 }

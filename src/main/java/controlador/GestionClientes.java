@@ -14,5 +14,5 @@ public interface GestionClientes {
     ArrayList<Clientes> visualizar_Clientes();
 
     Clientes buscar(int id);
-    
+
 }
