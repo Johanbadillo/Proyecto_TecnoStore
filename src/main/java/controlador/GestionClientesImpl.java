@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import modelo.Clientes;
 import modelo.persona;
 
@@ -51,13 +52,36 @@ public class GestionClientesImpl implements GestionClientes {
     }
 
     @Override
-    public void eliminar_Clientes() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void eliminar_Clientes(int id) {
+        try (Connection cn = c.conectar()) {
+            PreparedStatement ps = cn.prepareStatement("delete from clientes where id=?");
+            ps.setInt(1, id);
+            int op = JOptionPane.showConfirmDialog(null, "¿Desea eliminar el empleado?", null, JOptionPane.YES_NO_OPTION);
+            if (op == 0) {
+                ps.executeUpdate();
+                System.out.println("ELIMINACION EXITOSA!");
+                gp.eliminacionPersona(id);
+            } else {
+                System.out.println("Operacion cancelada");
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     @Override
     public ArrayList<Clientes> visualizar_Clientes() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        ArrayList<Clientes> clientes = new ArrayList<>();
+        try (Connection cn = c.conectar()) {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery("select p.id, p.nombre,p.identificacion,p.correo,p.telefono from clientes c left join persona p on p.id=c.id");
+            while (rs.next()) {
+                clientes.add(new Clientes(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return clientes;
     }
 
     @Override
