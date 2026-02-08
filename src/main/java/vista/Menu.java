@@ -7,14 +7,17 @@ public class Menu {
     public void Menu_principal() {
         int op = 0;
         Validaciones v = new Validaciones();
-        op = v.validacion(1, 3, """
+        op = v.validacion(1, 6, """
                                --------------------------------------------
-                               Bienevido a Tecno Store 
+                               Bienvenido a Tecno Store 
                                tu aliado para la gestion de tu tienda.
                                --------------------------------------------
                                1.   Gestionar Clientes.
-                               2.   Gestionar Ventas.
-                               3.   Salir.
+                               2.   Gestionar Celulares
+                               3.   Gestionar Ventas.
+                               4.   Gestion marcas.
+                               5.   Gestion Sistemas Operativos.
+                               6.   Salir.
                                --------------------------------------------
                                """);
         switch (op) {
@@ -23,10 +26,22 @@ public class Menu {
                 mc.menu();
                 break;
             case 2:
+                MenuCelulares mcel = new MenuCelulares();
+                mcel.menu();
+                break;
+            case 3:
                 MenuVentas mv = new MenuVentas();
                 mv.menu();
                 break;
-            case 3:
+            case 4:
+                MenuMarca mm = new MenuMarca();
+                mm.menu();
+                break;
+            case 5:
+                MenuSistemasOperativos mso = new MenuSistemasOperativos();
+                mso.menu();
+                break;
+            case 6:
                 System.out.println("Gracias Por usar nuestro Sistema de gestion!");
                 break;
         }
