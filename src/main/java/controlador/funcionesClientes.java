@@ -1,5 +1,6 @@
-package controlador;
+    package controlador;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 import modelo.Clientes;
 import modelo.persona;
@@ -60,8 +61,47 @@ public class funcionesClientes {
                     break;
             }
             gc.actualizar_Clientes(cl, id);
-        }else {
+        } else {
             System.out.println("No se ha encontrado el cliente");
+        }
+        mc.menu();
+    }
+
+    public void ftEliminacion() {
+        System.out.println("Ingresa el id del cliente que deseas eliminar");
+        int id = new Scanner(System.in).nextInt();
+        Clientes cl = gc.buscar(id);
+        if (cl != null) {
+            System.out.println(cl);
+            gc.eliminar_Clientes(id);
+        }else{
+            System.out.println("No se encontro el cliente");
+        }
+        
+        mc.menu();
+    }
+
+    public void ftListar() {
+        ArrayList<Clientes> clientes = gc.visualizar_Clientes();
+        for (Clientes cl : clientes) {
+            System.out.println(cl);
+        }
+        mc.menu();
+    }
+
+    public void ftBuscar() {
+        System.out.println("Ingresa el id del cliente que deseas visualizar");
+        String busqueda = new Scanner(System.in).nextLine();
+        try {
+            int id = Integer.parseInt(busqueda.trim());
+            Clientes cl = gc.buscar(id);
+            if (cl != null) {
+                System.out.println(cl);
+            } else {
+                System.out.println("No se ha encontrado el cliente al que deseas visualizar!");
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Error porfavor Ingrese solo numeros");
         }
         mc.menu();
     }
