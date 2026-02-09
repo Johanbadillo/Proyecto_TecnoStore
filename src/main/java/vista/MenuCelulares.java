@@ -7,31 +7,207 @@ import controlador.GestionMarcaImpl;
 import controlador.GestionSistemaOperativos;
 import controlador.GestionSistemaOperativosImpl;
 import controlador.Validaciones;
+import java.util.ArrayList;
+import java.util.Scanner;
 import modelo.Celulares;
+import modelo.marca;
+import modelo.sistema_operativo;
 
 public class MenuCelulares {
-    
-    GestionCelulares gcel= new GestionCelularesImpl();
+
+    Validaciones v = new Validaciones();
+    GestionCelulares gcel = new GestionCelularesImpl();
     GestionMarca gm = new GestionMarcaImpl();
     GestionSistemaOperativos gsio = new GestionSistemaOperativosImpl();
-    
-    private void registrar(){
+
+    private void registrar() {
         Celulares cel = new Celulares();
-        System.out.println("Ingresa ");
+        System.out.println("""
+                           ===================
+                           Marcas
+                           ===================""");
+        ArrayList<marca> marcas = gm.visualizar_marca();
+        for (marca mr : marcas) {
+            System.out.println(mr);
+        }
+        marca mr = null;
+        while (mr == null) {
+            System.out.println("Ingrese El id de la marca del celular");
+            String busqueda = new Scanner(System.in).nextLine();
+            try {
+                int idMr = Integer.parseInt(busqueda.trim());
+                mr = gm.buscar(idMr);
+                if (mr == null) {
+                    System.out.println("Opcion no valida, Ingrese un ID existente");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Error porfa ingrese solo numeros");
+            }
+        }
+        cel.setId_marca(mr);
+        System.out.println("Ingresa el modelo del celular");
+        cel.setModelo(new Scanner(System.in).nextLine());
+        System.out.println("Ingresa el precio del celular");
+        cel.setPrecio(new Scanner(System.in).nextDouble());
+        System.out.println("Ingresa la cantidad de celulares disponibles");
+        cel.setStock(new Scanner(System.in).nextInt());
+        System.out.println("""
+                           ===================
+                           Sistemas Operativos
+                           ===================
+                           """);
+        ArrayList<sistema_operativo> sistema_operativos = gsio.visualizar_SistemaOperativo();
+        for (sistema_operativo sio : sistema_operativos) {
+            System.out.println(sio);
+        }
+        sistema_operativo sio = null;
+        while (sio == null) {
+            System.out.println("Ingresa el id del Sistema Operativo");
+            String busqueda = new Scanner(System.in).nextLine();
+            try {
+                int idSio = Integer.parseInt(busqueda.trim());
+                sio = gsio.buscar(idSio);
+                if (sio == null) {
+                    System.out.println("Opcion no valida, Ingrese un ID existente");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Error porfa ingrese solo numeros");
+            }
+        }
+        cel.setId_sistema_operativo(sio);
+        int op = v.validacion(1, 3, """
+                           ==========================================
+                           Ingresa el numero de la gama del celular
+                           ==========================================
+                           1.   Alta    2.   Media  3.   Baja
+                           """);
+        switch (op) {
+            case 1:
+                cel.setGama("alta");
+                break;
+            case 2:
+                cel.setGama("media");
+                break;
+            case 3:
+                cel.setGama("baja");
+                break;
+        }
+        gcel.agregar_celulares(cel);
+        menu();
     }
-    private void actualizar(){
-        
+
+    private void actualizar() {
+        System.out.println("Ingresa el id del celular que deseas Actualizar");
+        int id = new Scanner(System.in).nextInt();
+        Celulares cel = gcel.buscar(id);
+        if (cel != null) {
+            System.out.println(cel);
+            int op = v.validacion(1, 7, """
+                               ===============================
+                               Que es lo que deseas Actualizar
+                               ===============================
+                               Porfa Ingresa el numero de la opcion.
+                               
+                               1.   La marca del celular.
+                               2.   El modelo del celular.
+                               3.   El precio del celular.
+                               4.   La Disponibilidad del celular.
+                               5.   El sistema operativo.
+                               6.   La gama del celular.
+                               7.Cancelar
+                               """);
+            switch (op) {
+                case 1:
+                    System.out.println("""
+                           ===================
+                           Marcas
+                           ===================
+                           """);
+                    gm.visualizar_marca();
+                    System.out.println("Ingresa el nuevo id de la marca del celular");
+                    marca mr = gm.buscar(new Scanner(System.in).nextInt());
+                    cel.setId_marca(mr);
+                    break;
+                case 2:
+                    System.out.println("Ingresa el nuevo modelo del celular");
+                    cel.setModelo(new Scanner(System.in).nextLine());
+                    break;
+                case 3:
+                    System.out.println("Ingresa el nuevo precio del celular");
+                    cel.setPrecio(new Scanner(System.in).nextDouble());
+                    break;
+                case 4:
+                    System.out.println("Ingresa la nueva cantidad de celulares disponibles");
+                    cel.setStock(new Scanner(System.in).nextInt());
+                    break;
+                case 5:
+                    System.out.println("""
+                           ===================
+                           Sistemas Operativos
+                           ===================
+                           """);
+                    gsio.visualizar_SistemaOperativo();
+                    System.out.println("Ingresa el id del Sistema Operativo");
+                    sistema_operativo sio = gsio.buscar(new Scanner(System.in).nextInt());
+                    cel.setId_sistema_operativo(sio);
+                    break;
+                case 6:
+                    int oop = v.validacion(1, 3, """
+                           ==========================================
+                           Ingresa el numero de la gama del celular
+                           ==========================================
+                           1.   Alta    2.   Media  3.   Baja
+                           """);
+                    switch (oop) {
+                        case 1:
+                            cel.setGama("alta");
+                            break;
+                        case 2:
+                            cel.setGama("media");
+                            break;
+                        case 3:
+                            cel.setGama("baja");
+                            break;
+                    }
+                    break;
+                case 7:
+                    menu();
+                    break;
+            }
+            gcel.actualizar_celulares(cel, id);
+        } else {
+            System.out.println("No existe un celular con este id!");
+        }
+        menu();
     }
-    private void eliminar(){
-        
+
+    private void eliminar() {
+        System.out.println("Ingresa El id del celular que deseas eliminar");
+        int id = new Scanner(System.in).nextInt();
+        gcel.eliminar_celulares(id);
+        menu();
     }
-    private void listar(){
-        
+
+    private void listar() {
+        ArrayList<Celulares> celular = gcel.visualizar_celulares();
+        for (Celulares cel : celular) {
+            System.out.println(cel);
+        }
+        menu();
     }
-    private void buscar(){
-        
+
+    private void buscar() {
+        System.out.println("Ingresa El id del celular que deseas buscar");
+        int id = new Scanner(System.in).nextInt();
+        Celulares cel = gcel.buscar(id);
+        if (cel != null) {
+            System.out.println(cel);
+        } else {
+            System.out.println("No existe un celular con este id!");
+        }
+        menu();
     }
-    
+
     public void menu() {
         int op = 0;
         Validaciones v = new Validaciones();
