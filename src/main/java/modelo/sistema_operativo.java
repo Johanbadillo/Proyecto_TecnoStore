@@ -1,12 +1,16 @@
 package modelo;
 
 public class sistema_operativo {
+
     private int id;
     private String nombre;
 
     public sistema_operativo(int id, String nombre) {
         this.id = id;
         this.nombre = nombre;
+    }
+
+    public sistema_operativo() {
     }
 
     public int getId() {
@@ -28,12 +32,12 @@ public class sistema_operativo {
     @Override
     public String toString() {
         return """
-               --------------------
+              -----------------
                Sistema operativo
-               --------------------
+               -----------------
+               ID:      %s
                Nombre:  %s
-               """.formatted(nombre);
+               """.formatted(id, nombre);
     }
-    
-    
+
 }

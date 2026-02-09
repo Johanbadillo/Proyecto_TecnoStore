@@ -16,10 +16,11 @@ public class Clientes extends persona {
                -----------------------------------------
                Cliente
                -----------------------------------------
+               ID:          %s
                Nombre:      %s
                C.C:         %S
                correo:      %s
                telefono:    %s
-               """.formatted(getNombre(),getIdentificacion(),getCorreo(),getTelefono());
+               """.formatted(getId(),getNombre(),getIdentificacion(),getCorreo(),getTelefono());
     }
 }

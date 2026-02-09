@@ -5,11 +5,12 @@ import modelo.Clientes;
 import modelo.persona;
 
 public interface GestionClientes {
+
     void agregar_Clientes(persona p);
 
-    void actualizar_Clientes(Clientes cl,int id);
+    void actualizar_Clientes(Clientes cl, int id);
 
-    void eliminar_Clientes();
+    void eliminar_Clientes(int id);
 
     ArrayList<Clientes> visualizar_Clientes();
 

@@ -1,5 +1,8 @@
 package controlador;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import modelo.Ventas;
 
@@ -9,7 +12,13 @@ public class GestionVentasImpl implements GestionVentas {
 
     @Override
     public void agregar_venta() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try (Connection cn = c.conectar()){
+            PreparedStatement ps = cn.prepareStatement("insert into venta(nombre, descripcion) values (?,?)");
+            ps.executeUpdate();
+            System.out.println("REGISTRO EXITOSO!");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     @Override

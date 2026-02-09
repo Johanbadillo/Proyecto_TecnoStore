@@ -9,6 +9,9 @@ public class marca {
         this.nombre = nombre;
     }
 
+    public marca() {
+    }
+
     public int getId() {
         return id;
     }
@@ -28,10 +31,11 @@ public class marca {
     @Override
     public String toString() {
         return """
-               --------------------
+              -----
                Marca
-               --------------------
+               -----
+               ID:      %s
                Nombre:  %s
-               """.formatted(nombre);
+               """.formatted(id,nombre);
     }
 }

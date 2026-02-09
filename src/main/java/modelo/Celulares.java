@@ -1,25 +1,26 @@
 package modelo;
 
 public class Celulares {
+
     private int id;
-    private String marca;
+    private marca id_marca;
     private String modelo;
     private double precio;
     private int stock;
-    private String sistemaOperativo;
+    private sistema_operativo id_sistema_operativo;
     private String gama;
 
-    public Celulares(int id, String marca, String modelo, double precio, int stock, String sistemaOperativo, String gama) {
-        if (precio <= 0 || stock < 0) {
-            throw new IllegalArgumentException("Precio debe ser positivo y stock no negativo.");
-        }
+    public Celulares(int id, marca id_marca, String modelo, sistema_operativo id_sistema_operativo, String gama, double precio, int stock) {
         this.id = id;
-        this.marca = marca;
+        this.id_marca = id_marca;
         this.modelo = modelo;
         this.precio = precio;
         this.stock = stock;
-        this.sistemaOperativo = sistemaOperativo;
+        this.id_sistema_operativo = id_sistema_operativo;
         this.gama = gama;
+    }
+
+    public Celulares() {
     }
 
     public int getId() {
@@ -30,12 +31,12 @@ public class Celulares {
         this.id = id;
     }
 
-    public String getMarca() {
-        return marca;
+    public marca getId_marca() {
+        return id_marca;
     }
 
-    public void setMarca(String marca) {
-        this.marca = marca;
+    public void setId_marca(marca id_marca) {
+        this.id_marca = id_marca;
     }
 
     public String getModelo() {
@@ -51,9 +52,6 @@ public class Celulares {
     }
 
     public void setPrecio(double precio) {
-        if (precio <= 0) {
-            throw new IllegalArgumentException("Precio debe ser positivo.");
-        }
         this.precio = precio;
     }
 
@@ -62,18 +60,15 @@ public class Celulares {
     }
 
     public void setStock(int stock) {
-        if (stock < 0) {
-            throw new IllegalArgumentException("Stock no puede ser negativo.");
-        }
         this.stock = stock;
     }
 
-    public String getSistemaOperativo() {
-        return sistemaOperativo;
+    public sistema_operativo getId_sistema_operativo() {
+        return id_sistema_operativo;
     }
 
-    public void setSistemaOperativo(String sistemaOperativo) {
-        this.sistemaOperativo = sistemaOperativo;
+    public void setId_sistema_operativo(sistema_operativo id_sistema_operativo) {
+        this.id_sistema_operativo = id_sistema_operativo;
     }
 
     public String getGama() {
@@ -87,10 +82,16 @@ public class Celulares {
     @Override
     public String toString() {
         return """
-               Marca:   %s
-               Modelo:  %s
-               Precio:  %s
-               Gama:    %s
-               """.formatted(marca,modelo,precio,gama);
+               -----------------------------------------
+                            Celulares
+               -----------------------------------------
+                ID:      %s
+                Modelo:  %s
+                Precio:  %s
+                Gama:    %s  
+                %s                           
+                %s
+               
+               """.formatted(id, modelo, precio, gama,getId_marca(), getId_sistema_operativo());
     }
 }

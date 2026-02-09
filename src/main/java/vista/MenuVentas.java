@@ -22,7 +22,7 @@ public class MenuVentas {
                                """);
         switch (op) {
             case 1:
-
+                
                 break;
             case 2:
 

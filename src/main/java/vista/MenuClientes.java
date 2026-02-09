@@ -5,28 +5,25 @@ import controlador.funcionesClientes;
 
 public class MenuClientes {
 
+    static funcionesClientes fc = new funcionesClientes();
+
     private void registro() {
-        funcionesClientes fc = new funcionesClientes();
         fc.ftRegistro();
     }
 
     private void actualizacion() {
-        funcionesClientes fc = new funcionesClientes();
         fc.ftActualizacion();
     }
 
     private void eliminacion() {
-        funcionesClientes fc = new funcionesClientes();
         fc.ftEliminacion();
     }
 
     private void buscar() {
-        funcionesClientes fc = new funcionesClientes();
         fc.ftBuscar();
     }
 
     private void listar() {
-        funcionesClientes fc = new funcionesClientes();
         fc.ftListar();
     }
 
