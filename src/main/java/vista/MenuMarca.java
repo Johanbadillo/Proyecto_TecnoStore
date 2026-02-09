@@ -9,6 +9,28 @@ import modelo.marca;
 
 public class MenuMarca {
 
+    // Ponerla en otro archivo?? para usarla en celular??o solo ponerla en publica??
+    private marca auxValidacion() {
+        marca mr = null;
+        while (mr == null) {
+            System.out.println("Ingrese El id de la marca");
+            String busqueda = new Scanner(System.in).nextLine();
+            try {
+                int id = Integer.parseInt(busqueda.trim());
+                mr = gm.buscar(id);
+                if (mr != null) {
+                    System.out.println(mr);
+                    return mr;
+                } else {
+                    System.out.println("No se Encontro Ninguna marca Con ese ID!");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Error porfa ingrese solo numeros");
+            }
+        }
+        return null;
+    }
+
     GestionMarca gm = new GestionMarcaImpl();
 
     private void registrar() {
@@ -20,29 +42,22 @@ public class MenuMarca {
     }
 
     public void actualizar() {
-        System.out.println("Ingresa el id de la marca que deseas Actualizar");
-        int id = new Scanner(System.in).nextInt();
-        marca mr = gm.buscar(id);
+        //    System.out.println("Ingresa el id de la marca que deseas Actualizar");
+        //    int id = new Scanner(System.in).nextInt();
+        //    marca mr = gm.buscar(id);
+        marca mr = auxValidacion();
         if (mr != null) {
-            System.out.println(mr);
             System.out.println("Ingresa el nuevo Nombre de la marca");
             mr.setNombre(new Scanner(System.in).nextLine());
-            gm.actualizar_marca(mr, id);
-        } else {
-            System.out.println("No se Encontro Ninguna marca Con ese ID!");
+            gm.actualizar_marca(mr,mr.getId());
         }
         menu();
     }
 
     public void eliminar() {
-        System.out.println("Ingrese el id de la marca que desees eliminar");
-        int id = new Scanner(System.in).nextInt();
-        marca mr = gm.buscar(id);
+        marca mr = auxValidacion();
         if (mr != null) {
-            System.out.println(mr);
-            gm.eliminar_marca(id);
-        } else {
-            System.out.println("No existe la marca");
+            gm.eliminar_marca(mr.getId());
         }
         menu();
     }

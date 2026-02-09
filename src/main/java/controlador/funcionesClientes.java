@@ -1,4 +1,4 @@
-    package controlador;
+package controlador;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -28,6 +28,7 @@ public class funcionesClientes {
     public void ftActualizacion() {
         Validaciones v = new Validaciones();
         System.out.println("Ingresa el id del cliente que quieres Actualizar");
+        
         int id = new Scanner(System.in).nextInt();
         Clientes cl = gc.buscar(id);
         if (cl != null) {

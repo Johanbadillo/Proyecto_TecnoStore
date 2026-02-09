@@ -10,6 +10,27 @@ import modelo.sistema_operativo;
 public class MenuSistemasOperativos {
 
     GestionSistemaOperativos gsio = new GestionSistemaOperativosImpl();
+    
+    private sistema_operativo auxValidacion() {
+        sistema_operativo sio = null;
+        while (sio == null) {
+            System.out.println("Ingrese El id del Sistema Operativo");
+            String busqueda = new Scanner(System.in).nextLine();
+            try {
+                int id = Integer.parseInt(busqueda.trim());
+                sio = gsio.buscar(id);
+                if (sio != null) {
+                    System.out.println(sio);
+                    return sio;
+                } else {
+                    System.out.println("No se Encontro Ningun Sistema Operativo Con ese ID!");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Error porfa ingrese solo numeros");
+            }
+        }
+        return null;
+    }
 
     private void registrar() {
         sistema_operativo sio = new sistema_operativo();
@@ -20,26 +41,20 @@ public class MenuSistemasOperativos {
     }
 
     public void actualizar() {
-        System.out.println("Ingresa el id del sistema que deseas Actualizar");
-        int id = new Scanner(System.in).nextInt();
-        sistema_operativo sio = gsio.buscar(id);
+        sistema_operativo sio =auxValidacion();
         if (sio != null) {
-            System.out.println(sio);
             System.out.println("Ingresa el nuevo Nombre del Sistema Operativo");
             sio.setNombre(new Scanner(System.in).nextLine());
-            gsio.actualizar_SistemaOperativo(sio, id);
-        } else{
-            System.out.println("No se Encontro Ningun Sistema Operativo Con ese ID!");
+            gsio.actualizar_SistemaOperativo(sio, sio.getId());
         }
         menu();
     }
 
     public void eliminar() {
-        System.out.println("Ingrese el id del Sistema Operativo que desees eliminar");
-        int id = new Scanner(System.in).nextInt();
-        sistema_operativo sio = gsio.buscar(id);
-        System.out.println(sio);
-        gsio.eliminar_SistemaOperativo(id);
+        sistema_operativo sio =auxValidacion();
+        if (sio != null) {
+            gsio.eliminar_SistemaOperativo(sio.getId());
+        }
         menu();
     }
 
