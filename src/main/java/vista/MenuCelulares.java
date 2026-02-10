@@ -19,6 +19,28 @@ public class MenuCelulares {
     GestionCelulares gcel = new GestionCelularesImpl();
     GestionMarca gm = new GestionMarcaImpl();
     GestionSistemaOperativos gsio = new GestionSistemaOperativosImpl();
+    MenuMarca mm = new MenuMarca();
+
+    public Celulares auxValidacion() {
+        Celulares cel = null;
+        while (cel == null) {
+            System.out.println("Ingrese El id del Celular");
+            String busqueda = new Scanner(System.in).nextLine();
+            try {
+                int id = Integer.parseInt(busqueda.trim());
+                cel = gcel.buscar(id);
+                if (cel != null) {
+                    System.out.println(cel);
+                    return cel;
+                } else {
+                    System.out.println("No se Encontro Ninguna Celular Con ese ID!");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Error porfa ingrese solo numeros");
+            }
+        }
+        return null;
+    }
 
     private void registrar() {
         Celulares cel = new Celulares();
@@ -30,20 +52,7 @@ public class MenuCelulares {
         for (marca mr : marcas) {
             System.out.println(mr);
         }
-        marca mr = null;
-        while (mr == null) {
-            System.out.println("Ingrese El id de la marca del celular");
-            String busqueda = new Scanner(System.in).nextLine();
-            try {
-                int idMr = Integer.parseInt(busqueda.trim());
-                mr = gm.buscar(idMr);
-                if (mr == null) {
-                    System.out.println("Opcion no valida, Ingrese un ID existente");
-                }
-            } catch (NumberFormatException e) {
-                System.out.println("Error porfa ingrese solo numeros");
-            }
-        }
+        marca mr = mm.auxValidacion();
         cel.setId_marca(mr);
         System.out.println("Ingresa el modelo del celular");
         cel.setModelo(new Scanner(System.in).nextLine());
@@ -97,9 +106,7 @@ public class MenuCelulares {
     }
 
     private void actualizar() {
-        System.out.println("Ingresa el id del celular que deseas Actualizar");
-        int id = new Scanner(System.in).nextInt();
-        Celulares cel = gcel.buscar(id);
+        Celulares cel = auxValidacion();
         if (cel != null) {
             System.out.println(cel);
             int op = v.validacion(1, 7, """
@@ -124,8 +131,7 @@ public class MenuCelulares {
                            ===================
                            """);
                     gm.visualizar_marca();
-                    System.out.println("Ingresa el nuevo id de la marca del celular");
-                    marca mr = gm.buscar(new Scanner(System.in).nextInt());
+                    marca mr = mm.auxValidacion();
                     cel.setId_marca(mr);
                     break;
                 case 2:
@@ -174,7 +180,7 @@ public class MenuCelulares {
                     menu();
                     break;
             }
-            gcel.actualizar_celulares(cel, id);
+            gcel.actualizar_celulares(cel, cel.getId());
         } else {
             System.out.println("No existe un celular con este id!");
         }
@@ -182,9 +188,10 @@ public class MenuCelulares {
     }
 
     private void eliminar() {
-        System.out.println("Ingresa El id del celular que deseas eliminar");
-        int id = new Scanner(System.in).nextInt();
-        gcel.eliminar_celulares(id);
+        Celulares cel = auxValidacion();
+        if (cel != null) {
+            gcel.eliminar_celulares(cel.getId());
+        }
         menu();
     }
 
@@ -197,14 +204,7 @@ public class MenuCelulares {
     }
 
     private void buscar() {
-        System.out.println("Ingresa El id del celular que deseas buscar");
-        int id = new Scanner(System.in).nextInt();
-        Celulares cel = gcel.buscar(id);
-        if (cel != null) {
-            System.out.println(cel);
-        } else {
-            System.out.println("No existe un celular con este id!");
-        }
+        Celulares cel = auxValidacion();
         menu();
     }
 

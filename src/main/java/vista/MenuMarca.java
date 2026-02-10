@@ -10,7 +10,7 @@ import modelo.marca;
 public class MenuMarca {
 
     // Ponerla en otro archivo?? para usarla en celular??o solo ponerla en publica??
-    private marca auxValidacion() {
+    public marca auxValidacion() {
         marca mr = null;
         while (mr == null) {
             System.out.println("Ingrese El id de la marca");
@@ -41,7 +41,7 @@ public class MenuMarca {
         menu();
     }
 
-    public void actualizar() {
+    private void actualizar() {
         //    System.out.println("Ingresa el id de la marca que deseas Actualizar");
         //    int id = new Scanner(System.in).nextInt();
         //    marca mr = gm.buscar(id);
@@ -54,7 +54,7 @@ public class MenuMarca {
         menu();
     }
 
-    public void eliminar() {
+    private void eliminar() {
         marca mr = auxValidacion();
         if (mr != null) {
             gm.eliminar_marca(mr.getId());
@@ -62,7 +62,7 @@ public class MenuMarca {
         menu();
     }
 
-    public void listar() {
+    private void listar() {
         ArrayList<marca> marcas = gm.visualizar_marca();
         for (marca mr : marcas) {
             System.out.println(mr);

@@ -40,7 +40,7 @@ public class MenuSistemasOperativos {
         menu();
     }
 
-    public void actualizar() {
+    private void actualizar() {
         sistema_operativo sio =auxValidacion();
         if (sio != null) {
             System.out.println("Ingresa el nuevo Nombre del Sistema Operativo");
@@ -50,7 +50,7 @@ public class MenuSistemasOperativos {
         menu();
     }
 
-    public void eliminar() {
+    private void eliminar() {
         sistema_operativo sio =auxValidacion();
         if (sio != null) {
             gsio.eliminar_SistemaOperativo(sio.getId());
@@ -58,7 +58,7 @@ public class MenuSistemasOperativos {
         menu();
     }
 
-    public void listar() {
+    private void listar() {
         ArrayList<sistema_operativo> sistema_operativos = gsio.visualizar_SistemaOperativo();
         for (sistema_operativo sio : sistema_operativos) {
             System.out.println(sio);

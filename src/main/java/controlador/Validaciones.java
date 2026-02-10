@@ -21,4 +21,14 @@ public class Validaciones {
         } while (validar == false);
         return op;
     }
+    
+    public static String validateCorreo(String correo){
+        while(!correo.matches("^[\\w.-]+@[\\w.-]+\\.\\w+$")){
+            System.out.println("** correo no valido ***");
+            System.out.println("Ingrese nuevamente el correo");
+            correo = new Scanner(System.in).nextLine();
+        }
+        return correo;
+        
+    }
 }
