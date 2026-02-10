@@ -15,6 +15,9 @@ public class Ventas {
         this.total = total;
     }
 
+    public Ventas() {
+    }
+
     public int getId() {
         return id;
     }

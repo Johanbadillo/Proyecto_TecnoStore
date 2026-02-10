@@ -11,7 +11,7 @@ public class MenuSistemasOperativos {
 
     GestionSistemaOperativos gsio = new GestionSistemaOperativosImpl();
     
-    private sistema_operativo auxValidacion() {
+    public sistema_operativo auxValidacion() {
         sistema_operativo sio = null;
         while (sio == null) {
             System.out.println("Ingrese El id del Sistema Operativo");

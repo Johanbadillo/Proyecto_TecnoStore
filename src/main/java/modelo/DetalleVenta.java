@@ -15,6 +15,9 @@ public class DetalleVenta {
         this.subtotal = celular.getPrecio() * cantidad;
     }
 
+    public DetalleVenta() {
+    }
+
     public int getId() {
         return id;
     }

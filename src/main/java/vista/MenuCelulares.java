@@ -20,6 +20,7 @@ public class MenuCelulares {
     GestionMarca gm = new GestionMarcaImpl();
     GestionSistemaOperativos gsio = new GestionSistemaOperativosImpl();
     MenuMarca mm = new MenuMarca();
+    MenuSistemasOperativos msio = new MenuSistemasOperativos();
 
     public Celulares auxValidacion() {
         Celulares cel = null;
@@ -69,20 +70,7 @@ public class MenuCelulares {
         for (sistema_operativo sio : sistema_operativos) {
             System.out.println(sio);
         }
-        sistema_operativo sio = null;
-        while (sio == null) {
-            System.out.println("Ingresa el id del Sistema Operativo");
-            String busqueda = new Scanner(System.in).nextLine();
-            try {
-                int idSio = Integer.parseInt(busqueda.trim());
-                sio = gsio.buscar(idSio);
-                if (sio == null) {
-                    System.out.println("Opcion no valida, Ingrese un ID existente");
-                }
-            } catch (NumberFormatException e) {
-                System.out.println("Error porfa ingrese solo numeros");
-            }
-        }
+        sistema_operativo sio = msio.auxValidacion();
         cel.setId_sistema_operativo(sio);
         int op = v.validacion(1, 3, """
                            ==========================================
@@ -108,7 +96,6 @@ public class MenuCelulares {
     private void actualizar() {
         Celulares cel = auxValidacion();
         if (cel != null) {
-            System.out.println(cel);
             int op = v.validacion(1, 7, """
                                ===============================
                                Que es lo que deseas Actualizar
@@ -130,7 +117,10 @@ public class MenuCelulares {
                            Marcas
                            ===================
                            """);
-                    gm.visualizar_marca();
+                    ArrayList<marca> marcas = gm.visualizar_marca();
+                    for (marca mr : marcas) {
+                        System.out.println(mr);
+                    }
                     marca mr = mm.auxValidacion();
                     cel.setId_marca(mr);
                     break;
@@ -152,9 +142,11 @@ public class MenuCelulares {
                            Sistemas Operativos
                            ===================
                            """);
-                    gsio.visualizar_SistemaOperativo();
-                    System.out.println("Ingresa el id del Sistema Operativo");
-                    sistema_operativo sio = gsio.buscar(new Scanner(System.in).nextInt());
+                    ArrayList<sistema_operativo> sistema_operativos = gsio.visualizar_SistemaOperativo();
+                    for (sistema_operativo sio : sistema_operativos) {
+                        System.out.println(sio);
+                    }
+                    sistema_operativo sio = msio.auxValidacion();
                     cel.setId_sistema_operativo(sio);
                     break;
                 case 6:

@@ -12,7 +12,7 @@ public class funcionesClientes {
     MenuClientes mc = new MenuClientes();
     Validaciones v = new Validaciones();
 
-    private Clientes auxValidacion() {
+    public Clientes auxValidacion() {
         Clientes cl = null;
         while (cl == null) {
             System.out.println("Ingrese El id del cliente");

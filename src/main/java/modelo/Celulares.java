@@ -88,10 +88,11 @@ public class Celulares {
                 ID:      %s
                 Modelo:  %s
                 Precio:  %s
-                Gama:    %s  
+                Gama:    %s 
+                Stock:   %s   
                 %s                           
                 %s
                
-               """.formatted(id, modelo, precio, gama,getId_marca(), getId_sistema_operativo());
+               """.formatted(id, modelo, precio, gama,stock,getId_marca(), getId_sistema_operativo());
     }
 }
