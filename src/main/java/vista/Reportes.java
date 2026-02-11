@@ -5,12 +5,39 @@ import controlador.GestionVentas;
 import controlador.GestionVentasImpl;
 import controlador.Validaciones;
 import java.util.List;
-import java.util.Map;
+import modelo.Celulares;
+import modelo.TopCelular;
 
 public class Reportes {
 
     GestionVentas gv = new GestionVentasImpl();
     GestionReportes gr = new GestionReportes();
+
+    private void top() {
+        List<TopCelular> top3 = gr.obtenerTop3CelularesMasVendidos();
+        for (TopCelular top : top3) {
+            System.out.println(top);
+        }
+        menu();
+    }
+
+    private void stockBajo() {
+        List<Celulares> lista = gr.obtenerCelularesBajoStock();
+
+        System.out.println("""
+                    =====================================
+                      CELULARES CON STOCK BAJO (<= 5)
+                    =====================================
+                    """);
+        if (lista.isEmpty()) {
+            System.out.println("No hay celulares con stock bajo.");
+        } else {
+            for (Celulares c : lista) {
+                System.out.println(c);
+            }
+        }
+        menu();
+    }
 
     public void menu() {
         int op = 0;
@@ -28,36 +55,14 @@ public class Reportes {
                                """);
         switch (op) {
             case 1:
-                List<Map<String, Object>> top = gr.obtenerTop3CelularesMasVendidos();
-
-                if (top == null || top.isEmpty()) {
-                    System.out.println("No hay ventas registradas todavía.");
-                } else {
-                    System.out.println("═══════════════════════════════════════════════");
-                    System.out.println("          TOP 3 CELULARES MÁS VENDIDOS          ");
-                    System.out.println("═══════════════════════════════════════════════");
-
-                    int posicion = 1;
-                    for (Map<String, Object> item : top) {
-                        System.out.printf("%d) %-18s %-20s | %6d unidades | $%,d%n",
-                                posicion++,
-                                item.get("marca") + " " + item.get("modelo"),
-                                "(" + item.get("gama") + ")",
-                                item.get("unidades"),
-                                item.get("totalVentas")
-                        );
-                    }
-                    System.out.println("═══════════════════════════════════════════════");
-                }
-                menu();
+                top();
                 break;
             case 2:
-
+                stockBajo();
                 break;
             case 3:
 
                 break;
-
             case 4:
                 gv.exportarBackup();
                 menu();

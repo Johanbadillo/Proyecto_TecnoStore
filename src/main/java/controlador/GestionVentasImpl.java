@@ -209,8 +209,7 @@ public class GestionVentasImpl implements GestionVentas {
                 System.out.println("Total de ventas guardadas: " + ventas.size());
 
             } catch (Exception e) {
-                System.out.println("Error al exportar backup: " + e.getMessage());
-                e.printStackTrace();
+                System.out.println(e.getMessage());
             }
         } else {
             System.out.println("Exportación cancelada");
