@@ -38,6 +38,10 @@ public class Reportes {
         }
         menu();
     }
+    
+    private void listar_mes(){
+        
+    }
 
     public void menu() {
         int op = 0;
@@ -61,7 +65,7 @@ public class Reportes {
                 stockBajo();
                 break;
             case 3:
-
+                listar_mes();
                 break;
             case 4:
                 gv.exportarBackup();
