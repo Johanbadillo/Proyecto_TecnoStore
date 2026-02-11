@@ -1,6 +1,7 @@
 package modelo;
 
 public class DetalleVenta {
+
     private int id;
     private Ventas venta;
     private Celulares celular;
@@ -57,10 +58,9 @@ public class DetalleVenta {
     @Override
     public String toString() {
         return """
-               -----------------------------------
-               Celular:   %s
                Cantidad:  %s
                Subtotal:  %s
-               """.formatted(celular,cantidad,subtotal);
+               %s
+               """.formatted(cantidad, subtotal,celular);
     }
 }

@@ -71,7 +71,7 @@ public class MenuSistemasOperativos {
         Validaciones v = new Validaciones();
         op = v.validacion(1, 5, """
                                ---------------------------------------------------------
-                               Bienvenido al Menu de Sistemas Operativos.
+                               Menu de Sistemas Operativos.
                                Aqui podras hacer la gestion de tus Sistemas operativos
                                ---------------------------------------------------------
                                1.   Registrar un Nuevo Sistema Operativo.

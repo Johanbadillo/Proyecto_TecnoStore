@@ -54,9 +54,16 @@ public class Ventas {
     public String toString() {
         return """
                -----------------------------------
-               Cliente:     %s
+               Venta
+               -----------------------------------
+               ID:          %s
                Fecha:       %s
                Total:       %s
-               """.formatted(cliente, fecha, total);
+               ---------
+               Cliente
+               ---------
+               ID Cliente:  %s
+               Nombre:      %s
+               """.formatted(id,fecha, total,getCliente().getId(),getCliente().getNombre());
     }
 }

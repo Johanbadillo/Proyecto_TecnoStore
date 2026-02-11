@@ -32,7 +32,7 @@ public class MenuClientes {
         Validaciones v = new Validaciones();
         op = v.validacion(1, 6, """
                                --------------------------------------------
-                               Bienevido al Menu Clientes.
+                               Menu Clientes.
                                Aqui podras hacer la gestion de tus clientes
                                --------------------------------------------
                                1.   Registrar Cliente nuevo.

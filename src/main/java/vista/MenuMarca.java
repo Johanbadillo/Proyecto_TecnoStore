@@ -75,7 +75,7 @@ public class MenuMarca {
         Validaciones v = new Validaciones();
         op = v.validacion(1, 5, """
                                --------------------------------------------
-                               Bienvenido al Menu Marca.
+                               Menu Marca.
                                Aqui podras hacer la gestion de tus Marcas
                                --------------------------------------------
                                1.   Registrar una Marca Nueva.

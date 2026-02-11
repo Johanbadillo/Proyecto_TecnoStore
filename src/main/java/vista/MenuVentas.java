@@ -30,16 +30,20 @@ public class MenuVentas {
     public Ventas auxValidacion() {
         v = null;
         while (v == null) {
-            System.out.println("Ingrese El id del Celular");
+            System.out.println("Ingrese El id de la venta");
             String busqueda = new Scanner(System.in).nextLine();
             try {
                 int id = Integer.parseInt(busqueda.trim());
                 v = gv.buscar(id);
                 if (v != null) {
                     System.out.println(v);
+                    ArrayList<DetalleVenta> detalles = gv.buscar_detalles(v.getId());
+                    for (DetalleVenta dvn : detalles) {
+                        System.out.println(dvn);
+                    }
                     return v;
                 } else {
-                    System.out.println("No se Encontro Ninguna Celular Con ese ID!");
+                    System.out.println("No se Encontro Ninguna venta Con ese ID!");
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Error porfa ingrese solo numeros");
@@ -84,7 +88,7 @@ public class MenuVentas {
             }
         }
         menu();
-    }
+    }   
 
     private void actualizar() {
         v = auxValidacion();
@@ -95,7 +99,7 @@ public class MenuVentas {
                 
                 1. La Fecha de la venta Registrada
                 2. El cliente Registrado
-                3. El Contenido De la venta
+                3. Salir
                                     """);
         switch (opt) {
             case 1:
@@ -115,16 +119,38 @@ public class MenuVentas {
                 v.setCliente(cl);
                 break;
             case 3:
-
+                menu();
                 break;
         }
+        gv.actualizar_venta(v, v.getId());
+        menu();
+    }
+
+    private void eliminar() {
+        v = auxValidacion();
+        gv.eliminar_detalles(v.getId());
+        gv.eliminar_venta(v.getId());
+        menu();
+    }
+
+    private void listar() {
+        ArrayList<Ventas> venta = gv.visualizar_venta();
+        for (Ventas vn : venta) {
+            System.out.println(vn);
+        }
+        menu();
+    }
+
+    private void buscar() {
+        auxValidacion();
+        menu();
     }
 
     public void menu() {
         int op = 0;
         op = vd.validacion(1, 6, """
                                --------------------------------------------
-                               Bienevido al Menu Ventas.
+                               Menu Ventas.
                                Aqui podras hacer la gestion de tus Ventas
                                --------------------------------------------
                                1.   Registrar Venta nueva.
@@ -140,15 +166,16 @@ public class MenuVentas {
                 registrar();
                 break;
             case 2:
-
+                actualizar();
                 break;
             case 3:
+                eliminar();
                 break;
             case 4:
-
+                listar();
                 break;
             case 5:
-
+                buscar();
                 break;
             case 6:
                 System.out.println("Regresando al menu anterior...");

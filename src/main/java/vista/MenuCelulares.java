@@ -181,9 +181,7 @@ public class MenuCelulares {
 
     private void eliminar() {
         Celulares cel = auxValidacion();
-        if (cel != null) {
-            gcel.eliminar_celulares(cel.getId());
-        }
+        gcel.eliminar_celulares(cel.getId());
         menu();
     }
 
@@ -196,7 +194,7 @@ public class MenuCelulares {
     }
 
     private void buscar() {
-        Celulares cel = auxValidacion();
+        auxValidacion();
         menu();
     }
 
@@ -205,7 +203,7 @@ public class MenuCelulares {
         Validaciones v = new Validaciones();
         op = v.validacion(1, 6, """
                                --------------------------------------------
-                               Bienevido al Menu Celulares.
+                               Menu Celulares.
                                Aqui podras hacer la gestion de tus Celulares
                                --------------------------------------------
                                1.   Registrar Celular nuevo.
