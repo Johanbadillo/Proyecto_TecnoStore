@@ -20,3 +20,17 @@ Un aplicativo en **Java** que implementa los principios **SOLID** y operaciones 
 - Principios de diseño: **SOLID** (Single Responsibility, Open-Closed, Liskov Substitution, Interface Segregation, Dependency Inversion)
 
 ## 📂 Estructura del proyecto
+
+```
+Proyecto_TecnoStore/
+├── src/
+│   └── main/
+│       └── java/
+│           ├──com/             <- El paquete de trabajo
+│           ├── model/          <- Entidades 
+│           ├── controlador/    <- Lógica de negocio
+│           └── vista/          <- Visibilidad por parte del usuario
+├── script.sql                  <- Script de creación de base de datos + datos de prueba
+├── pom.xml                     <- Configuración de Maven
+└── README.md
+```
