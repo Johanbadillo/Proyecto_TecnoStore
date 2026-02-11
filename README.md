@@ -85,6 +85,6 @@ Eliminar (Delete)
 <div align="center">
 
 
-**Hecho con 🍕 y ❤️ para la Pizzería Don Piccolo**
+**Hecho con ❤️ para la Tienda de tecnologia TecnoStore**
 
 <div>
