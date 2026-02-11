@@ -34,3 +34,57 @@ Proyecto_TecnoStore/
 ├── pom.xml                     <- Configuración de Maven
 └── README.md
 ```
+
+## 🚀 Instalación y ejecución
+
+### 1. Requisitos previos
+
+- Java 11 o superior
+- Motor de base de datos MySQL
+
+### 2. Pasos para ejecutar
+
+- 1. Clonar el repositorio
+```
+git clone https://github.com/Johanbadillo/Proyecto_TecnoStore.git
+cd Proyecto_TecnoStore
+```
+
+- 2. Crear la base de datos y tablas
+
+Aqui copia y pega el contenido de [script.sql](script.sql)
+
+- 3.  Ejecutar la aplicación En tu aplicacion o consola
+
+
+## 📋 Entidades principales (CRUD implementado)
+
+Celulares
+
+Ventas
+
+Clientes
+
+Factura
+
+Detalle de venta
+
+Empleados
+
+---
+
+Crear (Create)
+
+Leer (Read) – individual y listado
+
+Actualizar (Update)
+
+Eliminar (Delete)
+
+## **👨‍💻 Autor** 
+<div align="center">
+
+
+**Hecho con 🍕 y ❤️ para la Pizzería Don Piccolo**
+
+<div>
