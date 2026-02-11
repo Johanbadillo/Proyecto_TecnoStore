@@ -22,5 +22,6 @@ public interface GestionVentas {
 
     void agregar_detalle_venta(DetalleVenta dv);
     
+    void exportarBackup();
     
 }

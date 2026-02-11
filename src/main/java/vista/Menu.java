@@ -17,7 +17,8 @@ public class Menu {
                                3.   Gestionar Ventas.
                                4.   Gestion marcas.
                                5.   Gestion Sistemas Operativos.
-                               6.   Salir.
+                               6.   Reportes.
+                               7.   Salir.
                                --------------------------------------------
                                """);
         switch (op) {
@@ -42,6 +43,10 @@ public class Menu {
                 mso.menu();
                 break;
             case 6:
+                Reportes r = new Reportes();
+                r.menu();
+                break;
+            case 7:
                 System.out.println("Gracias Por usar nuestro Sistema de gestion!");
                 break;
         }

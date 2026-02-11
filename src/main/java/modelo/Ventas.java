@@ -1,8 +1,9 @@
 package modelo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Ventas {
+public class Ventas implements Serializable{
     private int id;
     private Clientes cliente;
     private Date fecha;

@@ -1,6 +1,8 @@
 package modelo;
 
-public class Clientes extends persona {
+import java.io.Serializable;
+
+public class Clientes extends persona implements Serializable{
     
     public Clientes(int id, String nombre, String identificacion, String correo, String telefono) {
         super(id, nombre, identificacion, correo, telefono);

@@ -1,11 +1,15 @@
 package controlador;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import modelo.Celulares;
 import modelo.Clientes;
@@ -29,7 +33,7 @@ public class GestionVentasImpl implements GestionVentas {
                 ps.setInt(3, dv.getCantidad());
                 ps.setDouble(4, dv.getSubtotal());
                 ps.executeUpdate();
-                
+
                 double totalCalculado = 0;
                 Statement st2 = cn.createStatement();
                 ResultSet rs2 = st2.executeQuery(
@@ -168,5 +172,48 @@ public class GestionVentasImpl implements GestionVentas {
             System.out.println(e.getMessage());
         }
         return detalles;
+    }
+
+    @Override
+    public void exportarBackup() {
+        JFileChooser j = new JFileChooser();
+        j.setDialogTitle("Escoja la ruta a guardar");
+        j.setSelectedFile(new File("backup_ventas.txt"));
+        int op = j.showSaveDialog(j);
+
+        if (op == JFileChooser.APPROVE_OPTION) {
+            File destino = j.getSelectedFile();
+            ArrayList<Ventas> ventas = visualizar_venta();
+
+            try (FileWriter writer = new FileWriter(destino)) {
+                // Encabezado
+                writer.write("═══════════════════════════════════════════════════\n");
+                writer.write("        BACKUP DE VENTAS - TECNOSTORE      \n");
+                writer.write("═══════════════════════════════════════════════════\n\n");
+                writer.write("Fecha del backup: " + new Date() + "\n");
+                writer.write("Total de ventas: " + ventas.size() + "\n\n");
+                writer.write("═══════════════════════════════════════════════════════\n\n");
+
+                // Escribir cada venta
+                for (Ventas vn : ventas) {
+                    writer.write(vn.toString());
+                    writer.write("\n");
+                }
+
+                // Pie
+                writer.write("═══════════════════════════════════════════════════════\n");
+                writer.write("                    FIN DEL BACKUP\n");
+                writer.write("═══════════════════════════════════════════════════════\n");
+
+                System.out.println("Backup exportado correctamente: " + destino.getAbsolutePath());
+                System.out.println("Total de ventas guardadas: " + ventas.size());
+
+            } catch (Exception e) {
+                System.out.println("Error al exportar backup: " + e.getMessage());
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Exportación cancelada");
+        }
     }
 }
