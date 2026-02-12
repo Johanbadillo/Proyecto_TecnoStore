@@ -41,7 +41,7 @@ public class funcionesClientes {
         p.setIdentificacion(new Scanner(System.in).nextLine());
         System.out.println("Ingresa el correo de la Persona");
         String correoV = new Scanner(System.in).nextLine();
-        Validaciones.validateCorreo(correoV);
+        correoV = Validaciones.validateCorreo(correoV);
         p.setCorreo(correoV);
         System.out.println("Ingresa los telefonos de la Persona");
         p.setTelefono(new Scanner(System.in).nextLine());
