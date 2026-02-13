@@ -43,7 +43,7 @@ public class funcionesClientes {
         String correoV = new Scanner(System.in).nextLine();
         correoV = Validaciones.validateCorreo(correoV);
         p.setCorreo(correoV);
-        System.out.println("Ingresa los telefonos de la Persona");
+        System.out.println("Ingresa el telefono de la Persona");
         p.setTelefono(new Scanner(System.in).nextLine());
         gc.agregar_Clientes(p);
         mc.menu();
@@ -108,7 +108,7 @@ public class funcionesClientes {
     }
 
     public void ftBuscar() {
-        Clientes cl = auxValidacion();
+        auxValidacion();
         mc.menu();
     }
 }

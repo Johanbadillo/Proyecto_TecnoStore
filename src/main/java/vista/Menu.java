@@ -7,7 +7,7 @@ public class Menu {
     public void Menu_principal() {
         int op = 0;
         Validaciones v = new Validaciones();
-        op = v.validacion(1, 6, """
+        op = v.validacion(1, 7, """
                                --------------------------------------------
                                Bienvenido a Tecno Store 
                                tu aliado para la gestion de tu tienda.

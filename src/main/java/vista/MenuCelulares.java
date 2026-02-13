@@ -108,7 +108,7 @@ public class MenuCelulares {
                                4.   La Disponibilidad del celular.
                                5.   El sistema operativo.
                                6.   La gama del celular.
-                               7.Cancelar
+                               7.   Cancelar
                                """);
             switch (op) {
                 case 1:

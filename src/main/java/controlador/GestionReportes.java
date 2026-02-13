@@ -26,7 +26,7 @@ public class GestionReportes {
             c.modelo,
             c.gama,
             c.precio,
-            SUM(dv.cantidad)
+            SUM(dv.cantidad) as unidades_vendidas
         FROM celulares c
         INNER JOIN marca m ON c.id_marca = m.id
         INNER JOIN detalle_ventas dv ON dv.id_celular = c.id

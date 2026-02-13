@@ -40,7 +40,7 @@ public class Reportes {
     }
     
     private void listar_mes(){
-        
+        menu();
     }
 
     public void menu() {

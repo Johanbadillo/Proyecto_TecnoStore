@@ -92,7 +92,7 @@ public class MenuVentas {
 
     private void actualizar() {
         v = auxValidacion();
-        int opt = vd.validacion(1, 7, """
+        int opt = vd.validacion(1, 3, """
                 ===============================
                 Que es lo que deseas Actualizar
                 ===============================

@@ -56,7 +56,7 @@ public class GestionClientesImpl implements GestionClientes {
         try (Connection cn = c.conectar()) {
             PreparedStatement ps = cn.prepareStatement("delete from clientes where id=?");
             ps.setInt(1, id);
-            int op = JOptionPane.showConfirmDialog(null, "¿Desea eliminar el empleado?", null, JOptionPane.YES_NO_OPTION);
+            int op = JOptionPane.showConfirmDialog(null, "¿Desea eliminar el cliente?", null, JOptionPane.YES_NO_OPTION);
             if (op == 0) {
                 ps.executeUpdate();
                 System.out.println("ELIMINACION EXITOSA!");
@@ -65,7 +65,7 @@ public class GestionClientesImpl implements GestionClientes {
                 System.out.println("Operacion cancelada");
             }
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            System.out.println("El cliente tiene ventas, no se puede eliminar");
         }
     }
 

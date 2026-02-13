@@ -68,7 +68,7 @@ public class GestionCelularesImpl implements GestionCelulares {
                 System.out.println("Operacion cancelada");
             }
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            System.out.println("No se puede eliminar el celular porque tiene ventas");
         }
     }
 
