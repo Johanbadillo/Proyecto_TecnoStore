@@ -2,6 +2,10 @@ package modelo;
 
 public class Celulares {
 
+    public static Object stream() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     private int id;
     private marca id_marca;
     private String modelo;

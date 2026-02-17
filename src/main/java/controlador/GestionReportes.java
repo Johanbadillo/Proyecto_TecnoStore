@@ -1,11 +1,15 @@
 package controlador;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import javax.swing.JFileChooser;
 import modelo.Celulares;
 import modelo.TopCelular;
 import modelo.marca;
@@ -105,4 +109,41 @@ public class GestionReportes {
         return lista;
     }
 
+    public void exportarBackupStockBajo() {
+        JFileChooser j = new JFileChooser();
+        j.setDialogTitle("Escoja la ruta a guardar");
+        j.setSelectedFile(new File("stock_bajo.txt"));
+        int op = j.showSaveDialog(j);
+
+        if (op == JFileChooser.APPROVE_OPTION) {
+            File destino = j.getSelectedFile();
+            List<Celulares> celular = obtenerCelularesBajoStock();
+
+            try (FileWriter writer = new FileWriter(destino)) {
+                // Encabezado
+                writer.write("═══════════════════════════════════════════════════\n");
+                writer.write("        BACKUP DE STOCK Bajo - TECNOSTORE      \n");
+                writer.write("═══════════════════════════════════════════════════\n\n");
+                writer.write("Fecha del backup: " + new Date() + "\n");
+                writer.write("═══════════════════════════════════════════════════════\n\n");
+
+                for (Celulares cl : celular) {
+                    writer.write(cl.toString());
+                    writer.write("\n");
+                }
+
+                writer.write("═══════════════════════════════════════════════════════\n");
+                writer.write("                    FIN DEL BACKUP\n");
+                writer.write("═══════════════════════════════════════════════════════\n");
+
+                System.out.println("Backup exportado correctamente: " + destino.getAbsolutePath());
+                System.out.println("Total de celulares guardadas: " + celular.size());
+
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        } else {
+            System.out.println("Exportación cancelada");
+        }
+    }
 }

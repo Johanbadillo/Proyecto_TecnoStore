@@ -14,4 +14,5 @@ public interface GestionCelulares {
     ArrayList<Celulares> visualizar_celulares();
 
     Celulares buscar(int id);
+    
 }

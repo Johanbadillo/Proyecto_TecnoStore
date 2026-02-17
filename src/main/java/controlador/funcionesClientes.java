@@ -101,6 +101,7 @@ public class funcionesClientes {
 
     public void ftListar() {
         ArrayList<Clientes> clientes = gc.visualizar_Clientes();
+        clientes.stream().forEach(System.out::println);
         for (Clientes cl : clientes) {
             System.out.println(cl);
         }
