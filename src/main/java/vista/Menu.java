@@ -1,12 +1,38 @@
 package vista;
 
+import controlador.GestionReportes;
 import controlador.Validaciones;
+import java.util.List;
+import modelo.Celulares;
 
 public class Menu {
 
+    Validaciones v = new Validaciones();
+
+    public void stockBajo() {
+        GestionReportes gr = new GestionReportes();
+        List<Celulares> lista = gr.obtenerCelularesBajoStock();
+
+        System.out.println("""
+                           --- ALERTA DE STOCK BAJO ---
+                    """);
+        if (lista.isEmpty()) {
+            System.out.println("No hay celulares con stock bajo.");
+        } else {
+            lista.stream().forEach(System.out::println);
+            int opp = v.validacion(1, 2, "Deseas guardar el archivo de los celulares casi agotados?\n1. SI\n2.  NO");
+            if (opp == 1) {
+                gr.exportarBackupStockBajo();
+            } else if(opp==2) {
+                System.out.println("Operacion Cancelada");
+                Menu_principal();
+            }
+        }
+        Menu_principal();
+    }
+
     public void Menu_principal() {
         int op = 0;
-        Validaciones v = new Validaciones();
         op = v.validacion(1, 7, """
                                --------------------------------------------
                                Bienvenido a Tecno Store 
