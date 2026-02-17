@@ -6,7 +6,6 @@ public class TecnoStore {
 
     public static void main(String[] args) {
         Menu m = new Menu();
-        m.Menu_principal();
-
+        m.stockBajo();
     }
 }
